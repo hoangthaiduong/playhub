@@ -1,0 +1,1 @@
+.ttt-board{max-width:480px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.ttt-cell{aspect-ratio:1;border:1px solid var(--border);border-radius:16px;background:var(--surface-2);font-size:clamp(40px,10vw,80px);font-weight:900;color:var(--text)}.ttt-cell.x{color:var(--primary)}.ttt-cell.o{color:var(--accent)}.ttt-cell:hover{border-color:var(--primary)}

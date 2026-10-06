@@ -1,0 +1,137 @@
+
+/* PlayHub — Friendly Game UI refresh */
+:root{
+  --game-accent:#2563eb;
+  --game-accent-2:#7c3aed;
+  --game-soft:#eef5ff;
+  --game-ink:#0f172a;
+}
+.game-shell{--game-accent:#2563eb;--game-accent-2:#7c3aed;--game-soft:#eef5ff;position:relative;isolation:isolate}
+.game-shell:before{content:"";position:absolute;z-index:-1;left:8%;right:8%;top:38px;height:180px;background:radial-gradient(circle at 30% 25%,color-mix(in srgb,var(--game-accent) 10%,transparent),transparent 55%),radial-gradient(circle at 70% 15%,color-mix(in srgb,var(--game-accent-2) 8%,transparent),transparent 55%);pointer-events:none}
+.game-header{margin-bottom:20px;padding:16px 18px;border:1px solid color-mix(in srgb,var(--border) 78%,transparent);background:color-mix(in srgb,var(--surface) 94%,var(--game-soft));border-radius:20px;box-shadow:0 8px 24px rgba(15,23,42,.05),inset 0 1px 0 rgba(255,255,255,.65)}
+.game-title{min-width:0}.game-title .game-icon{flex:0 0 auto;width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:var(--game-soft);border:1px solid color-mix(in srgb,var(--game-accent) 14%,var(--border));box-shadow:0 8px 16px rgba(15,23,42,.06);font-size:25px;transition:transform .2s ease}
+.game-header:hover .game-title .game-icon{transform:rotate(-4deg) translateY(-1px)}
+.game-title h1{letter-spacing:-.03em}.game-title p{max-width:680px}
+.game-actions .button{min-height:42px}
+.game-layout{gap:18px}
+.game-board-panel,.side-panel{border:1px solid color-mix(in srgb,var(--border) 76%,transparent);background:var(--surface);box-shadow:0 12px 28px rgba(15,23,42,.055);transition:box-shadow .2s ease,transform .2s ease,border-color .2s ease}
+.game-board-panel:hover,.side-panel:hover{box-shadow:0 16px 34px rgba(15,23,42,.075);border-color:color-mix(in srgb,var(--game-accent) 18%,var(--border))}
+.game-board-panel:before,.side-panel:before{background:var(--game-accent);height:2px;opacity:.8}
+.side-panel{background:color-mix(in srgb,var(--surface) 97%,var(--game-soft))}
+.game-layout .button{border-radius:12px;font-weight:800}
+.game-layout .button.primary{background:var(--game-accent);box-shadow:0 7px 16px color-mix(in srgb,var(--game-accent) 20%,transparent)}
+.game-layout .button.primary:hover{filter:brightness(1.03);transform:translateY(-1px)}
+.game-layout .button.ghost:hover{background:var(--game-soft);border-color:color-mix(in srgb,var(--game-accent) 25%,var(--border))}
+.game-select,.input{border-radius:12px;border:1px solid var(--border);background:var(--surface);min-height:44px}
+.game-select:focus,.input:focus{outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--game-accent) 12%,transparent);border-color:color-mix(in srgb,var(--game-accent) 50%,var(--border))}
+.result-banner{background:var(--game-soft);border:1px solid color-mix(in srgb,var(--game-accent) 12%,var(--border));box-shadow:none}
+.result-banner:before{background:var(--game-accent)}
+.canvas-wrap{background:#f3f6fb;border:1px solid color-mix(in srgb,var(--border) 82%,transparent);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 10px 24px rgba(15,23,42,.045)}
+.game-canvas{border-radius:14px;box-shadow:0 10px 24px rgba(15,23,42,.12)}
+.touch-btn{border:1px solid var(--border);background:var(--surface);color:var(--text);box-shadow:0 6px 14px rgba(15,23,42,.06)}
+.touch-btn:hover{background:var(--game-soft);border-color:color-mix(in srgb,var(--game-accent) 30%,var(--border))}
+.touch-btn:focus-visible,.game-layout .button:focus-visible,.game-select:focus-visible{outline:3px solid color-mix(in srgb,var(--game-accent) 24%,transparent);outline-offset:2px}
+.keycap{background:var(--surface);border-color:var(--border);color:var(--muted)}
+.stat-row{min-height:44px}
+.game-message{font-weight:700;color:var(--text)}
+.mini-note{color:var(--muted)}
+
+/* Friendly palette per game */
+.game-theme-rock-paper-scissors{--game-accent:#f97316;--game-accent-2:#ef4444;--game-soft:#fff4ea}
+.game-theme-uno{--game-accent:#16a34a;--game-accent-2:#2563eb;--game-soft:#ecfdf3}
+.game-theme-chess{--game-accent:#7c5b3f;--game-accent-2:#2563eb;--game-soft:#f7f1e9}
+.game-theme-number-guess{--game-accent:#2563eb;--game-accent-2:#14b8a6;--game-soft:#edf6ff}
+.game-theme-pong{--game-accent:#0f766e;--game-accent-2:#2563eb;--game-soft:#ecfeff}
+.game-theme-flappy-bird{--game-accent:#0284c7;--game-accent-2:#f59e0b;--game-soft:#eefaff}
+.game-theme-minesweeper{--game-accent:#b45309;--game-accent-2:#dc2626;--game-soft:#fff8eb}
+.game-theme-snake{--game-accent:#16a34a;--game-accent-2:#84cc16;--game-soft:#f0fdf4}
+.game-theme-tetris{--game-accent:#7c3aed;--game-accent-2:#2563eb;--game-soft:#f4f0ff}
+.game-theme-doodle-jump{--game-accent:#ea580c;--game-accent-2:#0ea5e9;--game-soft:#fff5ef}
+.game-theme-memory-match{--game-accent:#db2777;--game-accent-2:#7c3aed;--game-soft:#fff0f7}
+.game-theme-tic-tac-toe{--game-accent:#2563eb;--game-accent-2:#db2777;--game-soft:#eef4ff}
+
+/* RPS */
+.game-theme-rock-paper-scissors .rps-choice{min-height:164px;border:1px solid var(--border);background:var(--surface);box-shadow:0 8px 20px rgba(15,23,42,.055)}
+.game-theme-rock-paper-scissors .rps-choice:hover{border-color:color-mix(in srgb,var(--game-accent) 42%,var(--border));box-shadow:0 14px 28px rgba(15,23,42,.085);transform:translateY(-4px)}
+.game-theme-rock-paper-scissors .rps-choice span{background:var(--game-soft);width:74px;height:74px;border-radius:20px;display:grid;place-items:center}
+.game-theme-rock-paper-scissors .rps-history{padding:14px;border-radius:16px;background:var(--surface-2);border:1px solid var(--border)}
+
+/* UNO */
+.game-theme-uno .game-board-panel{padding:14px}
+.game-theme-uno .uno-table{min-height:590px;border-radius:22px}
+.game-theme-uno .uno-card{cursor:pointer}
+.game-theme-uno .uno-card:hover{filter:saturate(1.05)}
+.game-theme-uno .uno-side{border-radius:18px;background:var(--surface)}
+.game-theme-uno .uno-hand{padding-top:12px}
+
+/* Chess */
+.game-theme-chess .game-board-panel{padding:16px}
+.game-theme-chess .chess-stage{width:min(100%,650px);padding:10px;border-radius:18px;background:#f2eee8;border:1px solid #ddd3c6;box-shadow:0 10px 26px rgba(15,23,42,.09)}
+.game-theme-chess .chess-board{border-radius:10px;box-shadow:0 8px 20px rgba(15,23,42,.13);outline:1px solid rgba(15,23,42,.08)}
+.game-theme-chess .chess-cell{font-size:clamp(27px,6.8vw,54px)}
+.game-theme-chess .chess-cell.light{background:#f1dfc2}.game-theme-chess .chess-cell.dark{background:#b98157}
+.game-theme-chess .chess-cell:hover{filter:brightness(1.025)}
+.game-theme-chess .chess-cell.selected{box-shadow:inset 0 0 0 4px #2563eb,inset 0 0 0 999px rgba(37,99,235,.09)}
+
+/* Number Guess */
+.game-theme-number-guess .guess-wrap{padding:34px 22px;border-radius:20px;background:linear-gradient(180deg,var(--surface),var(--game-soft));border:1px solid var(--border)}
+.game-theme-number-guess .guess-range{font-size:clamp(42px,7vw,70px);color:var(--game-accent)}
+.game-theme-number-guess .guess-wrap .input{background:#fff;box-shadow:0 5px 14px rgba(15,23,42,.045)}
+
+/* Canvas arcade games */
+.game-theme-pong .canvas-wrap,.game-theme-flappy-bird .canvas-wrap,.game-theme-snake .canvas-wrap,.game-theme-doodle-jump .canvas-wrap{background:#eef3f8}
+.game-theme-pong .game-canvas{background:#0f1d30}
+.game-theme-flappy-bird .game-canvas{background:#bfe8ff}
+.game-theme-snake .game-canvas{background:#122218}
+.game-theme-doodle-jump .game-canvas{background:#dff3ff}
+.game-theme-pong .canvas-wrap,.game-theme-flappy-bird .canvas-wrap,.game-theme-snake .canvas-wrap,.game-theme-doodle-jump .canvas-wrap{padding:10px;border-radius:20px}
+
+/* Minesweeper */
+.game-theme-minesweeper .mine-head{padding:10px 12px;border-radius:12px;background:var(--game-soft);border:1px solid var(--border)}
+.game-theme-minesweeper .mine-grid{padding:6px;border:1px solid #d5dde8;border-radius:14px;background:#d7e0ea;box-shadow:inset 0 1px 3px rgba(15,23,42,.08)}
+.game-theme-minesweeper .mine-cell{border-radius:4px;background:#e8eef5}
+.game-theme-minesweeper .mine-cell:hover:not(.open){background:#f3f7fb}
+
+/* Snake */
+.game-theme-snake .canvas-wrap{background:#edf6f0}
+
+/* Tetris */
+.game-theme-tetris .tetris-layout{gap:14px}
+.game-theme-tetris .tetris-main{padding:8px;border-radius:18px;background:#101827;box-shadow:0 12px 26px rgba(15,23,42,.17)}
+.game-theme-tetris .tetris-mini{border-radius:16px;background:var(--surface);border:1px solid var(--border)}
+
+/* Doodle */
+.game-theme-doodle-jump .canvas-wrap{background:#eef9ff}
+
+/* Memory */
+.game-theme-memory-match .memory-top{padding:10px 12px;background:var(--game-soft);border:1px solid var(--border);border-radius:12px}
+.game-theme-memory-match .memory-card{border-radius:16px;background:#e9edf5;box-shadow:0 8px 17px rgba(15,23,42,.07);cursor:pointer}
+.game-theme-memory-match .memory-card:hover{transform:translateY(-4px)}
+.game-theme-memory-match .memory-card.open{background:#fff;border-color:color-mix(in srgb,var(--game-accent) 42%,var(--border));box-shadow:0 10px 22px rgba(219,39,119,.09)}
+
+/* Tic Tac Toe */
+.game-theme-tic-tac-toe .ttt-board{gap:11px}
+.game-theme-tic-tac-toe .ttt-cell{border-radius:20px;background:var(--surface);box-shadow:0 8px 18px rgba(15,23,42,.055)}
+.game-theme-tic-tac-toe .ttt-cell:hover:not(.filled){background:var(--game-soft);border-color:color-mix(in srgb,var(--game-accent) 35%,var(--border));transform:translateY(-3px)}
+.game-theme-tic-tac-toe .ttt-cell.x{color:#2563eb}.game-theme-tic-tac-toe .ttt-cell.o{color:#db2777}
+
+/* Dark mode */
+[data-theme="dark"] .game-header{background:color-mix(in srgb,var(--surface) 92%,var(--game-soft))}
+[data-theme="dark"] .game-board-panel,.dark .game-board-panel,.dark-mode .game-board-panel{background:var(--surface)}
+[data-theme="dark"] .canvas-wrap{background:#111827}
+[data-theme="dark"] .game-theme-number-guess .guess-wrap{background:linear-gradient(180deg,var(--surface),color-mix(in srgb,var(--game-soft) 25%,var(--surface)))}
+
+@media (max-width:720px){
+  .game-header{padding:13px 14px;border-radius:17px}
+  .game-title .game-icon{width:42px;height:42px;border-radius:13px;font-size:22px}
+  .game-board-panel,.side-panel{border-radius:18px}
+}
+@media (max-width:480px){
+  .game-header{margin-bottom:14px}
+  .game-actions{width:100%;display:grid;grid-template-columns:1fr auto}
+  .game-actions .button{min-width:0}
+  .game-theme-rock-paper-scissors .rps-choice{min-height:108px}
+}
+@media(prefers-reduced-motion:reduce){
+  .game-header .game-icon,.game-board-panel,.side-panel,.rps-choice,.memory-card,.ttt-cell,.touch-btn{transition:none !important}
+}

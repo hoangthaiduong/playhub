@@ -1,0 +1,1 @@
+window.PlayHub=window.PlayHub||{};window.PlayHub.Flappy=window.PlayHub.Flappy||{};

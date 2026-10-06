@@ -1,0 +1,1 @@
+window.PlayHub=window.PlayHub||{};window.PlayHub.Chess=window.PlayHub.Chess||{};
